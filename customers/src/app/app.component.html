@@ -1,0 +1,9 @@
+<h1 class="my-h1">This is main App Component</h1>
+
+<h2>{{ title }}</h2>
+
+<button (click)="submit()">Submit</button>
+<button (click)="reset()">Reset</button>
+
+<app-login [title]="childLoginComp" />
+<app-register [title]="childRegisterComp" />
