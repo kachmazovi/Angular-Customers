@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { CustomersComponent } from './customers/customers.component';
 
 @Component({
   selector: 'app-root',
-  imports: [LoginComponent, RegisterComponent],
+  imports: [LoginComponent, RegisterComponent, CustomersComponent],
   templateUrl: './app.component.html',
   // template: ` <h1>This is Angular Application</h1> `,
   styleUrls: ['./app.component.scss'],
@@ -15,26 +16,25 @@ import { RegisterComponent } from './register/register.component';
   // `,
 })
 export class AppComponent {
-  public title!: string;
-  public childLoginComp!: string;
-  public childRegisterComp!: string;
+  public loginPage = true;
 
-  private name = 'Jhon';
+  public user = {
+    profile: {
+      settings: {
+        startDate: '2025',
+      },
+    },
+  };
 
   constructor() {
-    this.title = 'Customers';
     console.log('app component initted');
   }
 
-  public submit() {
-    console.log(this.title);
-
-    this.childLoginComp = 'New Login Component';
-    this.childRegisterComp = 'New Register Component';
+  public login() {
+    this.loginPage = true;
   }
 
-  public reset() {
-    this.childLoginComp = '';
-    this.childRegisterComp = '';
+  public register() {
+    this.loginPage = false;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginRegister } from '../login-register-form/login-register.abstract-class';
 
 @Component({
@@ -8,10 +8,9 @@ import { LoginRegister } from '../login-register-form/login-register.abstract-cl
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent extends LoginRegister {
-  @Input() title: string = 'Register Component';
+  public title: string = 'Register Component';
 
   constructor() {
     super();
-    console.log('register component');
   }
 }

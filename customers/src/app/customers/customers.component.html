@@ -1,0 +1,11 @@
+@for (user of users | customer; track user.id; let index = $index) {
+<h2>
+  {{ user.name }} - {{ user.surName }} - index:
+  {{ index }}
+</h2>
+} @empty {
+<h2>there are not users</h2>
+}
+
+<button (click)="deleteUser()">Delete</button>
+<button (click)="addUser()">Add</button>

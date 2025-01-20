@@ -2,9 +2,19 @@
 <div class="wrapper">
   <form>
     <label for="username">UserName</label>
-    <input type="text" id="username" />
+    <input
+      type="text"
+      id="username"
+      [(ngModel)]="firstName"
+      [ngModelOptions]="{ standalone: true }"
+    />
     <label for="password">Password</label>
-    <input type="password" id="password" />
+    <input
+      type="password"
+      id="password"
+      [(ngModel)]="password"
+      [ngModelOptions]="{ standalone: true }"
+    />
     <button>Login</button>
   </form>
 </div>
