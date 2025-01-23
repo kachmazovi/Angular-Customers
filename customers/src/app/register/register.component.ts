@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { LoginRegister } from '../login-register-form/login-register.abstract-class';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { LoginRegister } from '../login-register-form/login-register.class';
 
 @Component({
   selector: 'app-register',
@@ -8,9 +8,15 @@ import { LoginRegister } from '../login-register-form/login-register.abstract-cl
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent extends LoginRegister {
-  public title: string = 'Register Component';
+  @Output() login = new EventEmitter();
+
+  public title: string = 'Register';
 
   constructor() {
     super();
+  }
+
+  public register() {
+    console.log('register');
   }
 }

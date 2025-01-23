@@ -1,16 +1,37 @@
-<h1>{{ title }}</h1>
-<div class="wrapper">
+<div class="login-register-wrapper">
+  <h1>{{ title }}</h1>
   <form>
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" />
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" />
-    <label for="username">Username:</label>
-    <input type="text" id="username" />
-    <label for="password">Password:</label>
-    <input type="text" id="password" />
-    <label for="confirmPassword">Confirm Password:</label>
-    <input type="text" id="confirmPassword" />
-    <button>Register</button>
+    <div class="mb-3">
+      <label for="userName" class="form-label">Username</label>
+      <input type="email" class="form-control" id="userName" />
+    </div>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="password" class="form-control" id="firstName" />
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input type="password" class="form-control" id="lastName" />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="password" class="form-control" id="email" />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" />
+    </div>
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" id="confirmPassword" />
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="check" />
+      <label class="form-check-label" for="check">Check me out</label>
+    </div>
   </form>
+  <div class="buttons">
+    <button (click)="login.emit()" class="btn btn-primary">Login</button>
+    <button (click)="register()" class="btn btn-secondary">Register</button>
+  </div>
 </div>
