@@ -1,37 +1,83 @@
 <div class="login-register-wrapper">
   <h1>{{ title }}</h1>
-  <form>
+  <form [formGroup]="userForm">
     <div class="mb-3">
       <label for="userName" class="form-label">Username</label>
-      <input type="email" class="form-control" id="userName" />
+      <input
+        [ngClass]="{
+          'input-error': usernameControl.touched && usernameControl.invalid
+        }"
+        formControlName="username"
+        type="text"
+        class="form-control"
+        id="userName"
+      />
+      @if (usernameControl.touched && usernameControl.hasError('required')) {
+      <app-error message="This field is required"></app-error>
+      } @else if (usernameControl.touched &&
+      usernameControl.hasError('minlength')) {
+      <app-error message="Username must contain min ">
+        {{usernameControl.errors?.['minlength'].requiredLength}}
+      </app-error>
+      } @else if (usernameControl.touched &&
+      usernameControl.hasError('onlyLathinLetters')) {
+      <app-error message="Only lathin numbers "> </app-error>
+      }
     </div>
     <div class="mb-3">
       <label for="firstName" class="form-label">First Name</label>
-      <input type="password" class="form-control" id="firstName" />
+      <input
+        formControlName="firstName"
+        type="text"
+        class="form-control"
+        id="firstName"
+      />
     </div>
     <div class="mb-3">
       <label for="lastName" class="form-label">Last Name</label>
-      <input type="password" class="form-control" id="lastName" />
+      <input
+        formControlName="lastName"
+        type="text"
+        class="form-control"
+        id="lastName"
+      />
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input type="password" class="form-control" id="email" />
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        id="email"
+      />
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password" />
-    </div>
-    <div class="mb-3">
-      <label for="confirmPassword" class="form-label">Confirm Password</label>
-      <input type="password" class="form-control" id="confirmPassword" />
+      <input
+        formControlName="password"
+        type="password"
+        class="form-control"
+        id="password"
+      />
     </div>
     <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="check" />
+      <input
+        formControlName="agreed"
+        type="checkbox"
+        class="form-check-input"
+        id="check"
+      />
       <label class="form-check-label" for="check">Check me out</label>
     </div>
   </form>
   <div class="buttons">
     <button (click)="login.emit()" class="btn btn-primary">Login</button>
-    <button (click)="register()" class="btn btn-secondary">Register</button>
+    <button
+      [disabled]="userForm.invalid"
+      (click)="register()"
+      class="btn btn-secondary"
+    >
+      Register
+    </button>
   </div>
 </div>
