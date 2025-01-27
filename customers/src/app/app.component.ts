@@ -1,30 +1,17 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ChildComponent } from './child/child.component';
 
 @Component({
   selector: 'app-root',
-  imports: [LoginComponent, RegisterComponent, ChildComponent],
+  imports: [LoginComponent, RegisterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild('loginComponent') public loginComp!: ElementRef;
-
+export class AppComponent {
   public loginPage = true;
 
-  public title = '';
-
-  constructor() {
-    console.log('app component initted');
-  }
+  constructor() {}
 
   public login() {
     this.loginPage = true;
@@ -32,20 +19,5 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   public register() {
     this.loginPage = false;
-  }
-
-  public ngOnInit(): void {
-    console.log('login component:', this.loginComp);
-  }
-
-  public ngAfterViewInit(): void {
-    console.log(
-      'login component after view init:',
-      this.loginComp.nativeElement
-    );
-  }
-
-  public changeTitle() {
-    this.title = Math.random().toFixed(2).toString();
   }
 }

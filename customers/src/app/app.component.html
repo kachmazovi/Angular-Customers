@@ -1,15 +1,7 @@
 <div class="main">
   @if (loginPage) {
-  <app-login #loginComponent [title]="title" (register)="register()" />
+  <app-login (register)="register()" />
   } @else {
   <app-register (login)="login()" />
   }
-  <button (click)="changeTitle()">Change title</button>
 </div>
-
-<app-child>
-  <p ngProjectAs="first-child">This is from parent component</p>
-  <p ngProjectAs="second-child">This if from parent second p Tag</p>
-  <p>This is default</p>
-  <p>This is default second</p>
-</app-child>
