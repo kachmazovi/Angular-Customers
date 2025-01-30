@@ -1,4 +1,4 @@
-@for (user of users | customer; track user.id; let index = $index) {
+@for (user of users | async; track user.id; let index = $index) {
 <h2>
   {{ user.name }} - {{ user.surName }} - index:
   {{ index }}

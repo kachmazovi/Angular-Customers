@@ -5,13 +5,17 @@ import { ICustomers } from './customers.interface';
   name: 'customer',
 })
 export class CustomerPipe implements PipeTransform {
-  transform(users: ICustomers[]): ICustomers[] {
-    const newUsers = users.map((user) => ({
-      id: user.id,
-      name: user.name.toUpperCase(),
-      surName: user.surName.toUpperCase(),
-    }));
+  transform(users: ICustomers[] | null): ICustomers[] {
+    console.log(users);
+    if (users) {
+      const newUsers = users.map((user) => ({
+        id: user.id,
+        name: user.name.toUpperCase(),
+        surName: user.surName.toUpperCase(),
+      }));
 
-    return newUsers;
+      return newUsers;
+    }
+    return [];
   }
 }

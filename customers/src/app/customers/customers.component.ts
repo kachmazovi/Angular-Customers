@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { ICustomers } from './customers.interface';
 import { CustomerPipe } from './customer.pipe';
+import { BehaviorSubject } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-customers',
-  imports: [CustomerPipe],
+  imports: [AsyncPipe],
   templateUrl: './customers.component.html',
   styleUrl: './customers.component.scss',
 })
 export class CustomersComponent {
-  public users: ICustomers[] = [
+  public users = new BehaviorSubject<ICustomers[]>([
     {
       id: 1,
       name: 'Jhon',
@@ -40,17 +42,21 @@ export class CustomersComponent {
       name: 'Jhon6',
       surName: 'Doe',
     },
-  ];
+  ]);
 
   public deleteUser() {
-    this.users.pop();
+    const users = this.users.getValue();
+    users.pop();
+    this.users.next(users);
   }
 
   public addUser() {
-    this.users.push({
+    const users = this.users.getValue();
+    users.push({
       id: 1,
       name: 'Jhon',
       surName: 'Doe',
     });
+    this.users.next(users);
   }
 }

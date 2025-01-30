@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { LoginRegister } from '../login-register-form/login-register.class';
 import {
   AbstractControl,
@@ -8,9 +8,9 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { tap } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { ErrorComponent } from '../error/error.component';
-import { NgClass } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -18,8 +18,11 @@ import { NgClass } from '@angular/common';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
-export class RegisterComponent extends LoginRegister {
+export class RegisterComponent extends LoginRegister implements OnDestroy {
   @Output() login = new EventEmitter();
+
+  private userform: any;
+  private destroy = new Subject();
 
   public title: string = 'Register';
 
@@ -51,27 +54,41 @@ export class RegisterComponent extends LoginRegister {
   constructor() {
     super();
 
-    // this.userForm.valueChanges
-    //   .pipe(
-    //     tap((value) => {
-    //       console.log(value);
-    //     })
-    //   )
-    //   .subscribe();
+    this.userform = this.userForm.valueChanges
+      .pipe(
+        tap((value) => {
+          console.log(value);
+        })
+      )
+      .subscribe();
 
-    // this.usernameControl.valueChanges
-    //   .pipe(
-    //     tap((value) => {
-    //       console.log(value);
-    //     })
-    //   )
-    //   .subscribe();
+    setTimeout(() => {
+      this.userForm.patchValue({
+        username: 'new username',
+      });
+    }, 5000);
+
+    this.usernameControl.valueChanges
+      .pipe(
+        takeUntil(this.destroy),
+        tap((value) => {
+          console.log(value);
+        })
+      )
+      .subscribe();
   }
 
   public register() {
     console.log('register');
     console.log(this.userForm);
     console.log(this.userForm.valid);
+  }
+
+  public ngOnDestroy(): void {
+    console.log('on destroy');
+    this.userform.unsubscribe();
+    this.destroy.next('');
+    this.destroy.complete();
   }
 
   public get usernameControl(): FormControl {
