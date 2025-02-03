@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { ICustomers } from './customers.interface';
-import { CustomerPipe } from './customer.pipe';
 import { BehaviorSubject } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-customers',
   imports: [AsyncPipe],
-  templateUrl: './customers.component.html',
-  styleUrl: './customers.component.scss',
+  templateUrl: './customers-list.component.html',
+  styleUrl: './customers-list.component.scss',
 })
-export class CustomersComponent {
+export class CustomersListComponent {
   public users = new BehaviorSubject<ICustomers[]>([
     {
       id: 1,

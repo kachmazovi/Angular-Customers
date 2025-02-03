@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { CustomersComponent } from './customers/customers.component';
 
 @Component({
   selector: 'app-root',
