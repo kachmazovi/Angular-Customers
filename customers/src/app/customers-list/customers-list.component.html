@@ -1,11 +1,32 @@
-@for (user of users | async; track user.id; let index = $index) {
-<h2>
-  {{ user.name }} - {{ user.surName }} - index:
-  {{ index }}
-</h2>
-} @empty {
-<h2>there are not users</h2>
-}
-
-<button (click)="deleteUser()">Delete</button>
-<button (click)="addUser()">Add</button>
+<div class="wrapper">
+  <div class="header">
+    <h1>Customers</h1>
+    <button class="btn btn-secondary">Log out</button>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of users | async | customerId; track $index) {
+      <tr class="pointer">
+        <th scope="row">{{ item.id }}</th>
+        <td>{{ item.username }}</td>
+        <td>{{ item.firstname }}</td>
+        <td>{{ item.lastname }}</td>
+        <td>{{ item.email }}</td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="5">No customers found</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
