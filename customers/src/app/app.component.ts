@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UserService } from './shared/services/user.service';
+import { CustomersListComponent } from './customers-list/customers-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [LoginComponent, RegisterComponent],
+  imports: [LoginComponent, RegisterComponent, CustomersListComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   public loginPage = true;
 
-  constructor() {}
+  constructor(public userService: UserService) {}
 
   public login() {
     this.loginPage = true;

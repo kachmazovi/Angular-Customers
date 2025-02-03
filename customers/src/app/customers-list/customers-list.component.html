@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="header">
     <h1>Customers</h1>
-    <button class="btn btn-secondary">Log out</button>
+    <button (click)="userService.currentState.set('loginPage')" class="btn btn-secondary">Log out</button>
   </div>
   <table class="table table-hover">
     <thead>
@@ -14,13 +14,13 @@
       </tr>
     </thead>
     <tbody>
-      @for (item of users | async | customerId; track $index) {
+      @for (user of users | async | customerId; track $index) {
       <tr class="pointer">
-        <th scope="row">{{ item.id }}</th>
-        <td>{{ item.username }}</td>
-        <td>{{ item.firstname }}</td>
-        <td>{{ item.lastname }}</td>
-        <td>{{ item.email }}</td>
+        <td scope="row">{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.email }}</td>
       </tr>
       } @empty {
       <tr>

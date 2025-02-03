@@ -3,6 +3,7 @@ import { UserForm } from '../shared/user-form/user-form.class';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from '../shared/error/error.component';
 import { NgClass } from '@angular/common';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -11,11 +12,9 @@ import { NgClass } from '@angular/common';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent extends UserForm implements OnDestroy {
-  @Output() login = new EventEmitter();
-
   public title: string = 'Register';
 
-  constructor() {
+  constructor(public userService: UserService) {
     super();
   }
 

@@ -24,7 +24,7 @@
   </form>
   <div class="buttons">
     <button (click)="login()" class="btn btn-primary">Login</button>
-    <button (click)="register.emit()" class="btn btn-secondary">
+    <button (click)="userService.currentState.set('registerPage')" class="btn btn-secondary">
       Register
     </button>
   </div>

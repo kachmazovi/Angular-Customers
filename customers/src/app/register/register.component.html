@@ -108,7 +108,7 @@
     </div>
   </form>
   <div class="buttons">
-    <button (click)="login.emit()" class="btn btn-primary">Login</button>
+    <button (click)="userService.currentState.set('loginPage')" class="btn btn-primary">Login</button>
     <button
       [disabled]="userForm.invalid"
       (click)="register()"

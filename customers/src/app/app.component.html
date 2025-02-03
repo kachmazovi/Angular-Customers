@@ -1,7 +1,13 @@
 <div class="main">
-  @if (loginPage) {
-  <app-login (register)="register()" />
-  } @else {
-  <app-register (login)="login()" />
+  @switch (userService.currentState()) {
+    @case ('loginPage') {
+      <app-login/>
+    }
+    @case ('registerPage') {
+      <app-register/>
+    }
+    @case ('customers') {
+      <app-customers-list/>
+    }
   }
 </div>

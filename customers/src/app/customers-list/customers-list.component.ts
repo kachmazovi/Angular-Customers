@@ -3,6 +3,7 @@ import { ICustomers } from './customers.interface';
 import { BehaviorSubject } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { CustomerIdPipe } from './customer-id.pipe';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-customers-list',
@@ -146,4 +147,6 @@ export class CustomersListComponent {
       password: 'Anna10@!',
     },
   ]);
+
+  constructor(public userService: UserService) {}
 }
