@@ -5,7 +5,7 @@ import { CustomersComponent } from './customers/customers.component';
 
 @Component({
   selector: 'app-root',
-  imports: [LoginComponent, RegisterComponent, CustomersComponent],
+  imports: [LoginComponent, RegisterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

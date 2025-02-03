@@ -13,61 +13,98 @@
         id="userName"
       />
       @if (usernameControl.touched && usernameControl.hasError('required')) {
-      <app-error message="This field is required"></app-error>
+      <app-error message="This field is required" />
       } @else if (usernameControl.touched &&
       usernameControl.hasError('minlength')) {
-      <app-error message="Username must contain min ">
-        {{usernameControl.errors?.['minlength'].requiredLength}}
-      </app-error>
+      <app-error
+        [message]="'Username must contain min ' + usernameControl.errors?.['minlength'].requiredLength"
+      />
       } @else if (usernameControl.touched &&
       usernameControl.hasError('onlyLathinLetters')) {
-      <app-error message="Only lathin numbers "> </app-error>
+      <app-error message="Only lathin letters" />
       }
     </div>
     <div class="mb-3">
       <label for="firstName" class="form-label">First Name</label>
       <input
+        [ngClass]="{
+          'input-error': firstNameControl.touched && firstNameControl.invalid
+        }"
         formControlName="firstName"
         type="text"
         class="form-control"
         id="firstName"
       />
+      @if (firstNameControl.touched && firstNameControl.hasError('required')) {
+      <app-error message="This field is required"></app-error>
+      } @else if (firstNameControl.touched &&
+      firstNameControl.hasError('minlength')) {
+      <app-error
+        [message]="'First name must contain min ' + firstNameControl.errors?.['minlength'].requiredLength"
+      />
+      }
     </div>
     <div class="mb-3">
       <label for="lastName" class="form-label">Last Name</label>
       <input
+        [ngClass]="{
+          'input-error': lastNameControl.touched && lastNameControl.invalid
+        }"
         formControlName="lastName"
         type="text"
         class="form-control"
         id="lastName"
       />
+      @if (lastNameControl.touched && lastNameControl.hasError('required')) {
+      <app-error message="This field is required"></app-error>
+      } @else if (lastNameControl.touched &&
+      lastNameControl.hasError('minlength')) {
+      <app-error
+        [message]="'Last name must contain min ' + lastNameControl.errors?.['minlength'].requiredLength"
+      />
+      }
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
       <input
+        [ngClass]="{
+          'input-error': emailControl.touched && emailControl.invalid
+        }"
         formControlName="email"
         type="email"
         class="form-control"
         id="email"
       />
+      @if (emailControl.touched && emailControl.hasError('required')) {
+      <app-error message="This field is required"></app-error>
+      }
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
       <input
+        [ngClass]="{
+          'input-error': passwordControl.touched && passwordControl.invalid
+        }"
         formControlName="password"
         type="password"
         class="form-control"
         id="password"
       />
+      @if (passwordControl.touched && passwordControl.hasError('reqrequireduierd')) {
+      <app-error message="This field is required"></app-error>
+      }
     </div>
     <div class="mb-3 form-check">
       <input
+        [ngClass]="{
+          'input-error': agreedControl.touched && agreedControl.invalid
+        }"
         formControlName="agreed"
         type="checkbox"
         class="form-check-input"
         id="check"
       />
-      <label class="form-check-label" for="check">Check me out</label>
+      <label class="form-check-label pointer" for="check">Check me out</label>
     </div>
   </form>
   <div class="buttons">
