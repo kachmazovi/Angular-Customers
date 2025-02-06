@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from '../shared/components/error/error.component';
 import { NgClass } from '@angular/common';
 import { UserService } from '../shared/services/user.service';
+import { CurrentStates } from '../shared/enums/enums';
 
 @Component({
   selector: 'app-register',
@@ -20,5 +21,9 @@ export class RegisterComponent extends UserForm {
 
   public register() {
     console.log('register');
+  }
+
+  public login() {
+    this.userService.currentState.set(CurrentStates.LOGIN);
   }
 }

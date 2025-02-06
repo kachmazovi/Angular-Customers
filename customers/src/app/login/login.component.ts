@@ -1,11 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../shared/services/user.service';
+import { CurrentStates } from '../shared/enums/enums';
 
 interface IUser {
   username: string;
@@ -29,6 +25,10 @@ export class LoginComponent {
 
   public login() {
     console.log(this.username, this.password);
-    this.userService.currentState.set('customers');
+    this.userService.currentState.set(CurrentStates.CUSTOMERS);
+  }
+
+  public register() {
+    this.userService.currentState.set(CurrentStates.REGISTER);
   }
 }

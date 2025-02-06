@@ -4,6 +4,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './shared/services/user.service';
 import { CustomersListComponent } from './customers-list/customers-list.component';
 import { CurrentCustomerComponent } from './current-customer/current-customer.component';
+import { CurrentStates } from './shared/enums/enums';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,8 @@ import { CurrentCustomerComponent } from './current-customer/current-customer.co
 })
 export class AppComponent {
   public loginPage = true;
+
+  public currentStates = CurrentStates;
 
   constructor(public userService: UserService) {}
 

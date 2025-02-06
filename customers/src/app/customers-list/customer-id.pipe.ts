@@ -1,11 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ICustomers } from './customers.interface';
+import { ICustomers } from '../shared/interfaces/interfaces';
 
 @Pipe({
-  name: 'customerId'
+  name: 'customerId',
 })
 export class CustomerIdPipe implements PipeTransform {
-
   transform(customers: ICustomers[] | null): ICustomers[] {
     if (customers) {
       return customers.map((customer, index) => {
@@ -15,5 +14,4 @@ export class CustomerIdPipe implements PipeTransform {
     }
     return [];
   }
-
 }
