@@ -11,7 +11,7 @@ import { UserService } from '../shared/services/user.service';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
-export class RegisterComponent extends UserForm implements OnDestroy {
+export class RegisterComponent extends UserForm {
   public title: string = 'Register';
 
   constructor(public userService: UserService) {
@@ -20,9 +20,5 @@ export class RegisterComponent extends UserForm implements OnDestroy {
 
   public register() {
     console.log('register');
-  }
-
-  public ngOnDestroy(): void {
-    console.log('on destroy');
   }
 }

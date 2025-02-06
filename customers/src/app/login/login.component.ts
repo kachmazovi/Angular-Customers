@@ -20,42 +20,15 @@ interface IUser {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  public title = 'Login'
-  
+  public title = 'Login';
 
   public username!: string;
   public password!: string;
 
-  private userNameSignal = signal(this.username);
-  private passWordSignal = signal(this.password);
-
-  // private userinfo = computed(() => {
-  //   let username = '';
-  //   let password = '';
-
-  //   if (this.userNameSignal()?.length < 3) {
-  //     username = this.userNameSignal() + this.userNameSignal();
-  //   } else {
-  //     username = this.userNameSignal();
-  //   }
-
-  //   return {
-  //     username,
-  //     password: this.passWordSignal(),
-  //   };
-  // });
-
-  constructor(public userService: UserService ) {
-    effect(() => {
-      console.log('from constructor', this.userNameSignal())
-      console.log('from constructor', this.passWordSignal())
-    })
-  }
+  constructor(public userService: UserService) {}
 
   public login() {
     console.log(this.username, this.password);
-    this.userService.currentState.set('customers')
-    // this.userNameSignal.set(this.username);
-    // this.passWordSignal.set(this.password);
+    this.userService.currentState.set('customers');
   }
 }
