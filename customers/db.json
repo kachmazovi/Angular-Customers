@@ -1,0 +1,21 @@
+{
+  "customers": [
+    {
+      "id": "2",
+      "username": "janedoe",
+      "firstname": "jane",
+      "lastname": "doe",
+      "email": "jane@doe",
+      "password": "P@ssw0rd1"
+    },
+    {
+      "id": "0bb6",
+      "username": "nick",
+      "firstname": "nick",
+      "lastname": "nick",
+      "email": "nick@nick",
+      "password": "Nick123@#123sad",
+      "agreed": true
+    }
+  ]
+}

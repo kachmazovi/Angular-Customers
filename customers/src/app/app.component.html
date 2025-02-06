@@ -1,3 +1,11 @@
+@if (userService.showSpinner()) {
+<div class="overlay">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+}
+
 <div class="main">
   @switch (userService.currentState()) { @case (currentStates.LOGIN) {
   <app-login />

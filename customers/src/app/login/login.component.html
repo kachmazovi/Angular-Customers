@@ -27,3 +27,7 @@
     <button (click)="register()" class="btn btn-secondary">Register</button>
   </div>
 </div>
+
+@if (loginFailed()) {
+<app-error message="Login failed" />
+}

@@ -14,13 +14,14 @@
       </tr>
     </thead>
     <tbody>
-      @for (user of users | async | customerId; track $index) {
-      <tr class="pointer">
-        <td scope="row">{{ user.id }}</td>
-        <td>{{ user.username }}</td>
-        <td>{{ user.firstname }}</td>
-        <td>{{ user.lastname }}</td>
-        <td>{{ user.email }}</td>
+      @for (customer of customers$ | async; track $index) {
+      <tr (click)="chooseUser(customer)" class="pointer">
+        <td scope="row">{{ customer.id }}</td>
+        <td>{{ customer.username }}</td>
+        <td>{{ customer.firstname }}</td>
+        <td>{{ customer.lastname }}</td>
+        <td>{{ customer.email }}</td>
+        <button (click)="deleteCustomer($event, customer.id)">Delete</button>
       </tr>
       } @empty {
       <tr>

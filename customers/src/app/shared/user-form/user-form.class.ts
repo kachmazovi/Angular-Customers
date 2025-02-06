@@ -16,11 +16,11 @@ export abstract class UserForm {
       Validators.maxLength(10),
       usernameValidator(),
     ]),
-    firstName: new FormControl('', [
+    firstname: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
     ]),
-    lastName: new FormControl('', [
+    lastname: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
     ]),
@@ -39,11 +39,11 @@ export abstract class UserForm {
   }
 
   public get firstNameControl(): FormControl {
-    return this.userForm.get('firstName') as FormControl;
+    return this.userForm.get('firstname') as FormControl;
   }
 
   public get lastNameControl(): FormControl {
-    return this.userForm.get('lastName') as FormControl;
+    return this.userForm.get('lastname') as FormControl;
   }
 
   public get emailControl(): FormControl {
