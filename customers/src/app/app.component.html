@@ -1,13 +1,11 @@
 <div class="main">
-  @switch (userService.currentState()) {
-    @case ('loginPage') {
-      <app-login/>
-    }
-    @case ('registerPage') {
-      <app-register/>
-    }
-    @case ('customers') {
-      <app-customers-list/>
-    }
-  }
+  @switch (userService.currentState()) { @case ('loginPage') {
+  <app-login />
+  } @case ('registerPage') {
+  <app-register />
+  } @case ('customers') {
+  <app-customers-list />
+  } @case ('currentCustomer') {
+  <app-current-customer />
+  } }
 </div>

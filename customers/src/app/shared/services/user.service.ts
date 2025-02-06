@@ -1,10 +1,10 @@
 import { Injectable, signal } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  public currentState = signal('loginPage')
-  
-  constructor() { }
+  public currentState = signal('currentCustomer');
+
+  constructor() {}
 }

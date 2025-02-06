@@ -35,7 +35,7 @@ export class CustomersListComponent {
       password: 'Password!2023',
     },
     {
-      username: 'tlee_jr',
+      username: 'tleejr',
       firstname: 'Tommy',
       lastname: 'Lee',
       email: 'tlee_jr@example.com',

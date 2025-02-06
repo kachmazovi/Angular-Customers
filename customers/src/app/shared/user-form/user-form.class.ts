@@ -63,7 +63,7 @@ function usernameValidator(): (
   contol: AbstractControl
 ) => ValidationErrors | null {
   return (contol: AbstractControl) => {
-    const pattern = /^[a-zA-Z]*$/;
+    const pattern = /^[a-zA-Z0-9]*$/;
 
     if (contol.value && !pattern.test(contol.value)) {
       return { onlyLathinLetters: true };

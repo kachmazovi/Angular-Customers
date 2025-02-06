@@ -1,5 +1,5 @@
 <div class="login-register-wrapper">
-  <h1>{{ title }}</h1>
+  <h1>{{ firstNameControl.value }} {{ lastNameControl.value }}</h1>
   <form [formGroup]="userForm">
     <div class="mb-3">
       <label for="userName" class="form-label">Username</label>
@@ -95,6 +95,7 @@
       <app-error message="This field is required"></app-error>
       }
     </div>
+    @if (editForm()) {
     <div class="mb-3 form-check">
       <input
         [ngClass]="{
@@ -107,20 +108,20 @@
       />
       <label class="form-check-label pointer" for="check">Check me out</label>
     </div>
+    }
   </form>
   <div class="buttons">
-    <button
-      (click)="userService.currentState.set('loginPage')"
-      class="btn btn-primary"
-    >
-      Login
-    </button>
+    @if (editForm()) {
+    <button (click)="edit(false)" class="btn btn-secondary">Cancel</button>
     <button
       [disabled]="userForm.invalid"
-      (click)="register()"
-      class="btn btn-secondary"
+      (click)="update()"
+      class="btn btn-primary"
     >
-      Register
+      Update
     </button>
+    } @else {
+    <button (click)="edit(true)" class="btn btn-primary">Edit</button>
+    }
   </div>
 </div>
