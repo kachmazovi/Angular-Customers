@@ -7,13 +7,5 @@
 }
 
 <div class="main">
-  @switch (userService.currentState()) { @case (currentStates.LOGIN) {
-  <app-login />
-  } @case (currentStates.REGISTER) {
-  <app-register />
-  } @case (currentStates.CUSTOMERS) {
-  <app-customers-list />
-  } @case (currentStates.CURRENT_CUSTOMER) {
-  <app-current-customer />
-  } }
+  <router-outlet />
 </div>

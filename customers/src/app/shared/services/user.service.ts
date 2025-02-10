@@ -1,5 +1,4 @@
 import { Injectable, signal } from '@angular/core';
-import { CurrentStates } from '../enums/enums';
 import { CustomersRestService } from '../../core/services/customers.rest.service';
 import { Observable } from 'rxjs';
 import { ICustomers } from '../interfaces/interfaces';
@@ -8,15 +7,17 @@ import { ICustomers } from '../interfaces/interfaces';
   providedIn: 'root',
 })
 export class UserService {
-  public currentState = signal(CurrentStates.LOGIN);
   public showSpinner = signal(false);
   public loggedCustomer = signal<ICustomers>({} as ICustomers);
-  public currentCustomer = signal<ICustomers>({} as ICustomers);
 
   constructor(private customersRest: CustomersRestService) {}
 
   public getCustomers(): Observable<ICustomers[]> {
     return this.customersRest.getCustomers();
+  }
+
+  public getCustomerById(id: number): Observable<ICustomers> {
+    return this.customersRest.getCustomerById(id);
   }
 
   public createCustomer(customer: ICustomers): Observable<ICustomers> {

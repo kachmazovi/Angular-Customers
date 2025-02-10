@@ -15,7 +15,18 @@
     </thead>
     <tbody>
       @for (customer of customers$ | async; track $index) {
-      <tr (click)="chooseUser(customer)" class="pointer">
+      <tr
+        [routerLink]="[
+          '/current-customer',
+          customer.id,
+          {
+            username: customer.username,
+            firstname: customer.firstname,
+            lastname: customer.lastname
+          }
+        ]"
+        class="pointer"
+      >
         <td scope="row">{{ customer.id }}</td>
         <td>{{ customer.username }}</td>
         <td>{{ customer.firstname }}</td>

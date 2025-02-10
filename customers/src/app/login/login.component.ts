@@ -1,9 +1,14 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../shared/services/user.service';
-import { CurrentStates } from '../shared/enums/enums';
 import { catchError, delay, finalize, of, tap } from 'rxjs';
 import { ErrorComponent } from '../shared/components/error/error.component';
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 
 interface IUser {
   username: string;
@@ -12,7 +17,13 @@ interface IUser {
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, ErrorComponent],
+  imports: [
+    FormsModule,
+    ErrorComponent,
+    RouterLink,
+    RouterOutlet,
+    RouterLinkActive,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,7 +36,9 @@ export class LoginComponent {
   public username!: string;
   public password!: string;
 
-  constructor(public userService: UserService) {}
+  constructor(public userService: UserService, private router: Router) {
+    console.log(this.router);
+  }
 
   public login() {
     if (this.username && this.password) {
@@ -44,7 +57,7 @@ export class LoginComponent {
 
             if (customer) {
               this.userService.loggedCustomer.set(customer);
-              this.userService.currentState.set(CurrentStates.CUSTOMERS);
+              this.router.navigateByUrl('/customers-list');
             } else {
               this.loginFailed.set(true);
             }
@@ -61,9 +74,5 @@ export class LoginComponent {
     } else {
       this.loginFailed.set(true);
     }
-  }
-
-  public register() {
-    this.userService.currentState.set(CurrentStates.REGISTER);
   }
 }

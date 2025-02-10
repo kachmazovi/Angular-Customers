@@ -13,11 +13,11 @@ import { AsyncPipe } from '@angular/common';
 import { CustomerIdPipe } from './customer-id.pipe';
 import { UserService } from '../shared/services/user.service';
 import { ICustomers } from '../shared/interfaces/interfaces';
-import { CurrentStates } from '../shared/enums/enums';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-customers-list',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, RouterLink],
   templateUrl: './customers-list.component.html',
   styleUrl: './customers-list.component.scss',
 })
@@ -25,7 +25,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   public customers$ = new BehaviorSubject<ICustomers[]>([]);
 
-  constructor(public userService: UserService) {}
+  constructor(public userService: UserService, private router: Router) {}
 
   public ngOnInit() {
     this.getCustomers();
@@ -49,12 +49,12 @@ export class CustomersListComponent implements OnInit, OnDestroy {
   }
 
   public logout(): void {
-    this.userService.currentState.set(CurrentStates.LOGIN);
+    this.router.navigateByUrl('/login');
   }
 
-  public chooseUser(customer: ICustomers): void {
-    this.userService.currentState.set(CurrentStates.CURRENT_CUSTOMER);
-    this.userService.currentCustomer.set(customer);
+  public chooseUser(id: number): void {
+    // this.router.navigateByUrl(`/current-customer/${id}`);
+    // this.router.navigate(['/current-customer', id]);
   }
 
   public deleteCustomer(event: Event, customerId: number): void {

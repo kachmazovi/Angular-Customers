@@ -4,23 +4,16 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './shared/services/user.service';
 import { CustomersListComponent } from './customers-list/customers-list.component';
 import { CurrentCustomerComponent } from './current-customer/current-customer.component';
-import { CurrentStates } from './shared/enums/enums';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    LoginComponent,
-    RegisterComponent,
-    CustomersListComponent,
-    CurrentCustomerComponent,
-  ],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   public loginPage = true;
-
-  public currentStates = CurrentStates;
 
   constructor(public userService: UserService) {}
 

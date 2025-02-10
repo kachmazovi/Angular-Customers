@@ -4,9 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from '../shared/components/error/error.component';
 import { NgClass } from '@angular/common';
 import { UserService } from '../shared/services/user.service';
-import { CurrentStates } from '../shared/enums/enums';
 import { ICustomers } from '../shared/interfaces/interfaces';
 import { catchError, delay, finalize, of, takeUntil, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +18,7 @@ export class RegisterComponent extends UserForm {
   public title: string = 'Register';
   public registerFailed = signal(false);
 
-  constructor(public userService: UserService) {
+  constructor(public userService: UserService, private router: Router) {
     super();
   }
 
@@ -32,7 +32,7 @@ export class RegisterComponent extends UserForm {
           delay(2000),
           tap(() => {
             if (!this.registerFailed()) {
-              this.userService.currentState.set(CurrentStates.LOGIN);
+              this.router.navigateByUrl('/login');
             }
           }),
 
@@ -49,6 +49,6 @@ export class RegisterComponent extends UserForm {
   }
 
   public login() {
-    this.userService.currentState.set(CurrentStates.LOGIN);
+    this.router.navigateByUrl('/login');
   }
 }
