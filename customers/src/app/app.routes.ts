@@ -1,11 +1,8 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import { CustomersListComponent } from './customers-list/customers-list.component';
-import { CurrentCustomerComponent } from './current-customer/current-customer.component';
-import { ChildAComponent } from './login/child-a/child-a.component';
-import { ChildBComponent } from './login/child-b/child-b.component';
+import { userLoggedGuard } from './core/guards/user-logged.guard';
+import { customersResolver } from './core/resolvers/customers.resolver';
+import { of } from 'rxjs';
+import { currentCustomerResolver } from './core/resolvers/current-customer.resolver';
 
 export const routes: Routes = [
   {
@@ -16,37 +13,65 @@ export const routes: Routes = [
   {
     title: 'Login',
     path: 'login',
-    component: LoginComponent,
+    loadComponent: () =>
+      import('./login/login.component').then((m) => m.LoginComponent),
     children: [
       {
         title: 'Child A',
         path: 'child-a',
-        component: ChildAComponent,
+        loadComponent: () =>
+          import('./login/child-a/child-a.component').then(
+            (m) => m.ChildAComponent
+          ),
       },
       {
         title: 'Child B',
         path: 'child-b',
-        component: ChildBComponent,
+        loadComponent: () =>
+          import('./login/child-b/child-b.component').then(
+            (m) => m.ChildBComponent
+          ),
       },
     ],
   },
   {
     title: 'Register',
     path: 'register',
-    component: RegisterComponent,
+    loadComponent: () =>
+      import('./register/register.component').then((m) => m.RegisterComponent),
   },
   {
     title: 'Customers List',
     path: 'customers-list',
-    component: CustomersListComponent,
+    loadComponent: () =>
+      import('./customers-list/customers-list.component').then(
+        (m) => m.CustomersListComponent
+      ),
+    canActivate: [userLoggedGuard],
+    resolve: {
+      customers: customersResolver,
+    },
+    data: {
+      list: [1, 2, 3],
+    },
   },
   {
     title: 'Current Customer',
     path: 'current-customer/:id',
-    component: CurrentCustomerComponent,
+    loadComponent: () =>
+      import('./current-customer/current-customer.component').then(
+        (m) => m.CurrentCustomerComponent
+      ),
+    canActivate: [userLoggedGuard],
+    resolve: {
+      currentCustomer: currentCustomerResolver,
+    },
   },
   {
     path: '**',
-    component: PageNotFoundComponent,
+    loadComponent: () =>
+      import('./shared/page-not-found/page-not-found.component').then(
+        (m) => m.PageNotFoundComponent
+      ),
   },
 ];

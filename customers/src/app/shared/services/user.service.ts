@@ -8,7 +8,7 @@ import { ICustomers } from '../interfaces/interfaces';
 })
 export class UserService {
   public showSpinner = signal(false);
-  public loggedCustomer = signal<ICustomers>({} as ICustomers);
+  public loggedCustomer = signal<ICustomers | null>(null);
 
   constructor(private customersRest: CustomersRestService) {}
 

@@ -23,7 +23,8 @@ export class CurrentCustomerComponent extends UserForm implements OnInit {
 
   public ngOnInit() {
     // this.route.params.subscribe((params) => console.log(params));
-    this.getCurrentCustomer();
+    this.userForm.patchValue(this.route.snapshot.data['currentCustomer']);
+    // this.getCurrentCustomer();
 
     console.log(this.route.snapshot.params);
 

@@ -13,7 +13,7 @@ import { AsyncPipe } from '@angular/common';
 import { CustomerIdPipe } from './customer-id.pipe';
 import { UserService } from '../shared/services/user.service';
 import { ICustomers } from '../shared/interfaces/interfaces';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-customers-list',
@@ -25,10 +25,18 @@ export class CustomersListComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   public customers$ = new BehaviorSubject<ICustomers[]>([]);
 
-  constructor(public userService: UserService, private router: Router) {}
+  constructor(
+    public userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   public ngOnInit() {
-    this.getCustomers();
+    console.log('active route: ', this.route);
+
+    this.customers$.next(this.route.snapshot.data['customers']);
+
+    // this.getCustomers();
   }
 
   public getCustomers(): void {
@@ -37,11 +45,9 @@ export class CustomersListComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         catchError((error) => {
-          console.error('Error fetching customers: ', error);
           return of([]);
         }),
         tap((customers: ICustomers[]) => {
-          console.log('customers: ', customers);
           this.customers$.next(customers);
         })
       )
@@ -50,6 +56,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
 
   public logout(): void {
     this.router.navigateByUrl('/login');
+    this.userService.loggedCustomer.set(null);
   }
 
   public chooseUser(id: number): void {
